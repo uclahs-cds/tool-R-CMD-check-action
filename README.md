@@ -6,6 +6,23 @@ Runs `R CMD check` for testing and validating R packages
 
 This action runs a comprehensive `R CMD check`, including all CRAN checks and running all tests. It caches the latest version of R, as well as all package dependencies for the project. Packages that have not been updated since the last workflow run will not be reinstalled. This can reduce the action's runtime by about an order of magnitude.
 
+## Using the Action
+Simply add the step `uses: uclahs-cds/tool-R-CMD-check-action@stable` to a repository workflow. For example:
+
+```
+---
+name: R-CMD-check (r-lib)
+'on':
+  pull_request:
+    branches:
+      - main
+jobs:
+  R-CMD-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: uclahs-cds/tool-R-CMD-check-action@stable
+```
+
 ## License
 
 Author: Name1(username1@mednet.ucla.edu), Name2(username2@mednet.ucla.edu)
