@@ -1,10 +1,10 @@
-# Project/Repo Title
+# R CMD Check GitHub Action
 
-Template Repository for the Boutros Lab general project repos. Describe a simple overview of use/purpose here.
+Runs `R CMD check` for testing and validating R packages
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This action runs a comprehensive `R CMD check`, including all CRAN checks and running all tests. It caches the latest version of R, as well as all package dependencies for the project. Packages that have not been updated since the last workflow run will not be reinstalled. This can reduce the action's runtime by about an order of magnitude.
 
 ## License
 
