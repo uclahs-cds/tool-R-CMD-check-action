@@ -11,6 +11,7 @@ runs:
         extra-packages: |
           any::rcmdcheck
           any::devtools
+          any::rmarkdown
         needs: check
     - uses: r-lib/actions/check-r-package@v2
       with:
