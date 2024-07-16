@@ -3,7 +3,9 @@ name: R-CMD-check
 description: 'Run R CMD check on an R package repo'
 inputs:
   github_dependencies:
-  required: false
+    required: false
+  token:
+    required: false
 runs:
   using: "composite"
   steps:
@@ -16,7 +18,7 @@ runs:
           any::devtools
           any::rmarkdown
         needs: check
-    - run: Rscript install.github.R --packages="${{github.event.inputs.github_dependencies}}" --token="${{secrets.UCLAHS_CDS_REPO_READ_TOKEN}}"
+    - run: Rscript install.github.R --packages="${{github.event.inputs.github_dependencies}}" --token="${{github.event.inputs.token}}"
     - uses: r-lib/actions/check-r-package@v2
       with:
         args: 'c("--as-cran")'
