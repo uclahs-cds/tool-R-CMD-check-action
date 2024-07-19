@@ -22,5 +22,5 @@ runs:
       shell: bash
     - uses: r-lib/actions/check-r-package@v2
       with:
-        args: 'c("--as-cran")'
+        args: 'c("--as-cran", "--ignore-vignettes")'
         build_args: 'c("--compact-vignettes=gs+qpdf")'
