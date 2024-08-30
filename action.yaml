@@ -24,6 +24,8 @@ runs:
       with:
         args: 'c("--as-cran", "--ignore-vignettes")'
         build_args: 'c("--compact-vignettes=gs+qpdf")'
-    - name: Test working directory
-      run: pwd && ls check
-      shell: bash
+    - name: Save built package
+      uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: check/*.tar.gz
