@@ -24,8 +24,8 @@ runs:
       with:
         args: 'c("--as-cran")'
         build_args: 'c("--compact-vignettes=gs+qpdf")'
-    - name: Save built package
+    - name: Save built package and check results
       uses: actions/upload-artifact@v4
       with:
-        name: build
-        path: check/*.tar.gz
+        name: results
+        path: check
