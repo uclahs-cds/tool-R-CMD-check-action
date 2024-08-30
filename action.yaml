@@ -27,4 +27,4 @@ runs:
     - name: Save built package
       uses: actions/upload-artifact@v4
       with:
-        path: check/*.tar.gz
+        path: check
