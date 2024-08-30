@@ -24,3 +24,5 @@ runs:
       with:
         args: 'c("--as-cran", "--ignore-vignettes")'
         build_args: 'c("--compact-vignettes=gs+qpdf")'
+    - run: ls
+      shell: bash
