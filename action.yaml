@@ -28,4 +28,4 @@ runs:
       uses: actions/upload-artifact@v4
         with:
           name: build
-          path: check/*.tar.gz
+          path: ./check/*.tar.gz
