@@ -25,6 +25,6 @@ runs:
         args: 'c("--as-cran", "--ignore-vignettes")'
         build_args: 'c("--compact-vignettes=gs+qpdf")'
     - name: Test working directory
-      working-directory: ..
+      working-directory: ../check
       run: pwd && ls
       shell: bash
