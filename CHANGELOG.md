@@ -9,9 +9,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-## [1.1.0] - 2024-07-16
+## [1.1.0] - 2024-08-30
 ### Added
 - Optionally install R packages from GitHub
+- Save built package as GitHub artifact
 
 ---
 
