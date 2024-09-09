@@ -21,4 +21,6 @@ runs:
     - run: Rscript "${{github.action_path}}/install.github.R" --packages="${{github.event.inputs.github_dependencies}}" --token="${{github.event.inputs.token}}"
       shell: bash
     - run: R -e "print(names(grDevices::pdfFonts()))"
+      shell: bash
     - run: R -e "print(names(grDevices::postscriptFonts()))"
+      shell: bash
