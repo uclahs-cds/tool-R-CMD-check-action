@@ -20,6 +20,8 @@ runs:
         needs: check
     - run: Rscript "${{github.action_path}}/install.github.R" --packages="${{github.event.inputs.github_dependencies}}" --token="${{github.event.inputs.token}}"
       shell: bash
+    - run: R -e "print(names(grDevices::pdfFonts()))"
+    - run: R -e "print(names(grDevices::postscriptFonts()))"
     - uses: r-lib/actions/check-r-package@v2
       with:
         args: 'c("--as-cran")'
