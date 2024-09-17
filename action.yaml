@@ -19,6 +19,7 @@ runs:
           any::rcmdcheck
           any::devtools
           any::rmarkdown
+          ReportModules=?ignore
         needs: check
     - uses: r-lib/actions/check-r-package@v2
       with:
