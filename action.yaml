@@ -1,9 +1,6 @@
 ---
 name: R-CMD-check
 description: 'Run R CMD check on an R package repo'
-defaults:
-  run:
-    shell: bash
 runs:
   using: 'composite'
   steps:
@@ -27,12 +24,14 @@ runs:
     - name: Install renv
       run: |
         Rscript -e 'if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")'
+      shell: bash
 
     - name: Restore R package dependencies
       run: |
         Rscript -e "renv::init()"
         Rscript -e "renv::snapshot()"
         Rscript -e "renv::restore()"
+      shell: bash
 
     - name: Save updated renv cache
       uses: actions/cache@v4
@@ -44,3 +43,4 @@ runs:
       run: |
         R CMD build .
         R CMD check --as-cran *.tar.gz
+      shell: bash
