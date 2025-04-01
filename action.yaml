@@ -33,6 +33,11 @@ runs:
         Rscript -e "renv::restore()"
       shell: bash
 
+    - name: Install dev dependencies
+      run: |
+        Rscript -e "renv::install('pandoc')"
+      shell: bash
+
     - name: Save updated renv cache
       uses: actions/cache@v4
       with:
