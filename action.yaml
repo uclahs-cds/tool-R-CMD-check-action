@@ -1,6 +1,9 @@
 ---
 name: R-CMD-check
 description: 'Run R CMD check on an R package repo'
+defaults:
+  run:
+    shell: bash
 runs:
   using: 'composite'
   steps:
