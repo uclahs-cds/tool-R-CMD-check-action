@@ -35,7 +35,7 @@ runs:
 
     - name: Install dev dependencies
       run: |
-        Rscript -e "renv::install('pandoc')"
+        sudo apt-get install -y pandoc
       shell: bash
 
     - name: Save updated renv cache
