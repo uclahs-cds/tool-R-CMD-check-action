@@ -4,8 +4,6 @@ description: 'Run R CMD check on an R package repo'
 inputs:
   token:
     required: false
-env:
-  GITHUB_PAT: ${{ inputs.token }}
 runs:
   using: 'composite'
   steps:
@@ -37,6 +35,8 @@ runs:
         Rscript -e "renv::snapshot()"
         Rscript -e "renv::restore()"
       shell: bash
+      env:
+        GITHUB_PAT: ${{ inputs.token }}
 
     - name: Install dev dependencies
       run: |
