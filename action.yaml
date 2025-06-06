@@ -54,3 +54,10 @@ runs:
         R CMD build .
         R CMD check --as-cran *.tar.gz
       shell: bash
+
+    - name: Save built package and check results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: results
+        path: check
