@@ -41,8 +41,8 @@ runs:
     - name: Install dev dependencies
       run: |
         sudo apt-get install -y \
-	  pandoc \
-	  tidy
+          pandoc \
+          tidy
       shell: bash
 
     - name: Save updated renv cache
