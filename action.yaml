@@ -61,5 +61,8 @@ runs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: results
-        path: check
+        with:
+        name: r-cmd-check-artifacts
+        path: |
+          *.tar.gz
+          *.Rcheck
