@@ -53,7 +53,7 @@ runs:
 
     - name: Run R CMD check
       run: |
-        R CMD build .
+        R CMD build --compact-vignettes="both" .
         R CMD check --as-cran *.tar.gz
       shell: bash
 
