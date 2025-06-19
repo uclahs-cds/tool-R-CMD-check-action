@@ -32,6 +32,7 @@ runs:
     - name: Restore R package dependencies
       run: |
         Rscript -e "renv::init()"
+        Rscript -e "renv::hydrate()"
         Rscript -e "renv::snapshot()"
         Rscript -e "renv::restore()"
       shell: bash
