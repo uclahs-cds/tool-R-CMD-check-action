@@ -2,33 +2,67 @@
 name: R-CMD-check
 description: 'Run R CMD check on an R package repo'
 inputs:
-  github_dependencies:
-    required: false
   token:
     required: false
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
-    - name: Deprecation Warning
-      run: echo "::warning::[DEPRECATED VERSION] You are using v1, which is deprecated. Please upgrade to v2 using uclahs-cds/tool-R-CMD-check-action@v2"
-      shell: bash
-    - uses: actions/checkout@v2
-    - uses: r-lib/actions/setup-r@v2
-    - uses: r-lib/actions/setup-r-dependencies@v2
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up R
+      uses: r-lib/actions/setup-r@v2
       with:
-        extra-packages: |
-          any::rcmdcheck
-          any::devtools
-          any::rmarkdown
-        needs: check
-    - run: Rscript "${{github.action_path}}/install.github.R" --packages="${{github.event.inputs.github_dependencies}}" --token="${{github.event.inputs.token}}"
-      shell: bash
-    - uses: r-lib/actions/check-r-package@v2
+        r-version: 'latest'
+
+    - name: Restore renv from cache
+      uses: actions/cache@v4
+      id: restore-renv
       with:
-        args: 'c("--as-cran")'
-        build_args: 'c("--compact-vignettes=gs+qpdf")'
+        path: ~/.cache/R/renv
+        key: ${{ runner.os }}-renv-${{ hashFiles('renv.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-renv-
+
+    - name: Install renv
+      run: |
+        Rscript -e 'if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")'
+      shell: bash
+
+    - name: Restore R package dependencies
+      run: |
+        Rscript -e "renv::init()"
+        Rscript -e "renv::hydrate()"
+        Rscript -e "renv::snapshot()"
+        Rscript -e "renv::restore()"
+      shell: bash
+      env:
+        GITHUB_PAT: ${{ inputs.token }}
+
+    - name: Install dev dependencies
+      run: |
+        sudo apt-get install -y \
+        pandoc \
+        tidy
+      shell: bash
+
+    - name: Save updated renv cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/R/renv
+        key: ${{ runner.os }}-renv-${{ hashFiles('renv.lock') }}
+
+    - name: Run R CMD check
+      run: |
+        R CMD build --compact-vignettes="both" .
+        R CMD check --as-cran *.tar.gz
+      shell: bash
+
     - name: Save built package and check results
+      if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: results
-        path: check
+        name: r-cmd-check-artifacts
+        path: |
+          *.tar.gz
+          *.Rcheck
