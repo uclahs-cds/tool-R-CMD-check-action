@@ -7,3 +7,20 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [Unreleased]
+
+## [1.1.0] - 2024-08-30
+### Added
+- Optionally install R packages from GitHub
+- Save built package as GitHub artifact
+
+---
+
+## [1.0.1] - 2023-03-30
+### Added
+- Added `rmarkdown` package to action dependencies for building vignettes
+
+---
+
+## [1.0.0] - YYYY-MM-DD
+### Added
