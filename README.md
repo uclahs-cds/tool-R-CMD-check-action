@@ -6,6 +6,20 @@ Template Repository for the Boutros Lab general project repos. Describe a simple
 
 An in-depth paragraph about your project and overview of use.
 
+## Usage
+
+To test your R package with this action, simply add a step with `uses: uclahs-cds/tool-R-CMD-check-action@v2` to your GitHub CI/CD workflow. See the [R package template](https://github.com/uclahs-cds/template-R-package/blob/main/.github/workflows/R-CMD-check.yaml) for a full example.
+
+Some packages require OS-level dependencies to work properly. Simply add a step to your workflow to install these dependencies before running this `R CMD check` action. See [BoutrosLab.plotting.general](https://github.com/uclahs-cds/package-BoutrosLab-plotting-general/blob/main/.github/workflows/R-CMD-check.yaml) for a full example.
+
+```
+- name: Install system graphics dependencies
+  run: |
+    sudo apt-get install -y \
+      libjpeg-dev \
+      libpng-dev
+```
+
 ## License
 
 Author: Name1(username1@mednet.ucla.edu), Name2(username2@mednet.ucla.edu)
