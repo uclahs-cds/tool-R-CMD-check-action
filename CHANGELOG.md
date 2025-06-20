@@ -1,5 +1,5 @@
 # Changelog
-All notable changes to the tool_name Docker file.
+All notable changes to the `R CMD check` GitHub action.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
