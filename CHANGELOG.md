@@ -1,5 +1,5 @@
 # Changelog
-All notable changes to the R CMD check GitHub Action.
+All notable changes to the `R CMD check` GitHub action.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
@@ -22,5 +22,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
-## [1.0.0] - YYYY-MM-DD
+## [1.0.0] - 2022-08-03
 ### Added
+- `R CMD check` using standard `r-lib` actions.
